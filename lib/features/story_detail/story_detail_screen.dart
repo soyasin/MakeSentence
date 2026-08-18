@@ -66,8 +66,10 @@ class StoryDetailScreen extends StatelessWidget {
                       ...sentence.grammarErrors.map((error) => Text('• $error')),
                       const SizedBox(height: 8),
                     ],
-                    const Text('Suggestions:'),
-                    ...sentence.suggestions.map((suggestion) => Text('→ $suggestion')),
+                    if (sentence.suggestions.isNotEmpty) ...[
+                      const Text('Suggestions:'),
+                      ...sentence.suggestions.map((suggestion) => Text('→ $suggestion')),
+                    ],
                   ],
                 ),
               ),

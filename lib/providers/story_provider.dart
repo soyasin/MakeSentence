@@ -98,11 +98,15 @@ class StoryProvider extends ChangeNotifier {
   }
 
   void updateSentence(String sentenceId, String newText) {
+    final trimmed = newText.trim();
+    if (trimmed.isEmpty) {
+      return;
+    }
     final index = _sentences.indexWhere((sentence) => sentence.id == sentenceId);
     if (index < 0) {
       return;
     }
-    _sentences[index].text = newText.trim();
+    _sentences[index].text = trimmed;
     _syncStorySentences();
     _isEvaluated = false;
     notifyListeners();
